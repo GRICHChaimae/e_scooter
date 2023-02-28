@@ -2,14 +2,14 @@ const asyncHandler = require('express-async-handler')
 const User = require ('../models/authModel')
 
 const allUsers = asyncHandler(async (req, res) => {
-    const users = await User.find();
+    const users = await User.find().select('_id firstNmae secondName');;
 
     if (users) {
-        const modifiedUsers = users.map(user => {
-            const { password, ...rest } = user.toObject();
-            return rest;
-        });
-        res.json({ message: 'get users succefully', users: modifiedUsers});
+        // const modifiedUsers = users.map(user => {
+        //     const { password, ...rest } = user.toObject();
+        //     return rest;
+        // });
+        res.send(users);
     } else {
         res.json({ message: 'no users'})
     }

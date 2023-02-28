@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import MapScreen from './Screens/MapScreen';
 import Login from './Screens/Login';
 import Register from './Screens/Register';
+import AllUsers from './Screens/AllUsers';
 
 const Tab = createBottomTabNavigator();
 
@@ -31,14 +32,11 @@ function MyTabs() {
           return <Icon name={iconName} size={size} color={color} />;
         },
       })}
-      tabBarOptions={{
-        activeTintColor: '#007aff',
-        inactiveTintColor: 'gray',
-      }}
     >
       <Tab.Screen options={{headerShown: false}} name="Map" component={MapScreen} />
       <Tab.Screen options={{headerShown: false}} name="Login" component={Login} />
       <Tab.Screen options={{headerShown: false}} name="Register" component={Register} />
+      <Tab.Screen options={{headerShown: false}} name="AllUsers" component={AllUsers} />
     </Tab.Navigator>
   );
 }
