@@ -15,4 +15,16 @@ const allUsers = asyncHandler(async (req, res) => {
     }
 })
 
-module.exports = { allUsers }
+const oneUser = asyncHandler(async (req, res) => {
+    const { firstNmae, secondName } = req.body
+
+    const user = await User.findOne({ firstNmae, secondName});
+
+    if (user) {
+        res.json({ name: user.firstNmae });
+    } else {
+        res.json({ message: 'there is no user with this name'})
+    }
+})
+
+module.exports = { oneUser, allUsers }
