@@ -7,7 +7,7 @@ const { hashPassword } = require('../utils/helpers')
 
 const register = asyncHandler ( async (req, res) => {
     const { firstNmae, secondName, email, password } = req.body
-
+    console.log(firstNmae, secondName, email, password );
     if(!firstNmae || !secondName || !email || !password) {
         res.status(400)
         throw new Error('Please add all fields')

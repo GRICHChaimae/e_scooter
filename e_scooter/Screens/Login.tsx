@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
 export default function Login() {
+  const navigation = useNavigation();
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -11,11 +13,11 @@ export default function Login() {
     const loginClient = async (e) => {
         e.preventDefault()
         try {
-            await axios.post("http://localhost:8000/api/v1/user/login",{
+            await axios.post("http://192.168.8.58:3000/api/v1/user/login",{
               email,
               password
             }).then( async (res) => {
-              // localStorage.setItem('jwt', JSON.stringify(res.data.accessToken));
+            navigation.navigate('Map');
           })
         } catch (error) {
           console.log(error)

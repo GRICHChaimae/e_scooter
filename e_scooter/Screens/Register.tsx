@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Text } from 'react-native';
-// import { useNavigation } from '@react-navigation/native';
+import { View, TextInput, TouchableOpacity, StyleSheet, Text, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
-
 export default function Register() {
-    // const navigation = useNavigation();
+    const navigation = useNavigation();
 
     const [firstNmae, setFirstNmae] = useState('');
     const [secondName, setSecondName] = useState('');
@@ -13,10 +12,9 @@ export default function Register() {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const regissterClient = async (e) => {
-      e.preventDefault()
-      try {
-          await axios.post("http://localhost:8000/api/v1/user/register",{
+    const regissterClient = async () => {
+      
+          await axios.post("http://172.23.144.1:3000/api/v1/user/register",{
               firstNmae,
               secondName,
               email,
@@ -26,22 +24,18 @@ export default function Register() {
             setSecondName('')
             setEmail('')
             setPassword('')
-            // navigation.navigate('Login');
-        })
-      } catch (error) {
-        console.log(error)
-        setErrorMessage(error.response.data.message)
-      }
+            navigation.navigate('Login');
+        }).catch((e)=>{console.log(e)})
+  }
+
+  const resting = () => {
+    console.log('object')
   }
 
   return (
     <View style={styles.container}>
       <Text>{errorMessage}</Text>
       <View style={styles.logoContainer}>
-        {/* <Image 
-          source={require('path/to/your/logo.png')}
-          style={styles.logo}
-        /> */}
         <Text style={styles.logoText}>E-Scooter</Text>
       </View>
       <View style={styles.formContainer}>
@@ -70,7 +64,7 @@ export default function Register() {
           onChangeText={(text) => setPassword(text)}
           value={password}
         />
-        <TouchableOpacity style={styles.buttonContainer} onPress={regissterClient}>
+        <TouchableOpacity style={styles.buttonContainer} onPress={()=>regissterClient()}>
           <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
       </View>
