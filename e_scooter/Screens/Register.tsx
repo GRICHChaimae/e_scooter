@@ -14,7 +14,7 @@ export default function Register() {
 
     const regissterClient = async () => {
       
-          await axios.post("http://172.23.144.1:3000/api/v1/user/register",{
+          await axios.post("http://10.0.2.2:3000/api/v1/user/register",{
               firstNmae,
               secondName,
               email,
@@ -26,11 +26,7 @@ export default function Register() {
             setPassword('')
             navigation.navigate('Login');
         }).catch((e)=>{console.log(e)})
-  }
-
-  const resting = () => {
-    console.log('object')
-  }
+    }
 
   return (
     <View style={styles.container}>

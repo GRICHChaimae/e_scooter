@@ -41,7 +41,7 @@ export default function AllUsers() {
                         <Text style={styles.title}>{item.firstNmae} {item.secondName}</Text>
                     </TouchableOpacity>
                 )}
-                key={item => item.id}
+                keyExtractor={item => item.id.toString()}
                 contentContainerStyle={styles.cardList}
             />
         </View>
